@@ -16,26 +16,6 @@ sf::Vector2f Entity::GetSize() const
 	return static_cast<sf::Vector2f>(m_image.getTexture()->getSize());
 }
 
-sf::Vector2f Entity::GetPosition() const
-{
-	return m_image.getPosition();
-}
-
-void Entity::SetPosition(sf::Vector2f const position)
-{
-	m_image.setPosition(position);
-}
-
-void Entity::SetRotation(float const angle)
-{
-	m_image.setRotation(angle);
-}
-
-void Entity::Rotate(float const angle)
-{
-	m_image.rotate(angle);
-}
-
 sf::Sprite& Entity::GetImage()
 {
 	return m_image;

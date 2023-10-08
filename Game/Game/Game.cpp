@@ -11,9 +11,9 @@ void Game::Init()
 {
 	m_window.setVerticalSyncEnabled(true);
 	m_size = m_window.getSize();
-	m_coast.SetPosition({ 0, 400 });
-	m_water.SetPosition({ 0, 590 });
-	m_cat.SetPosition({ m_coast.GetSize().x - 230, m_coast.GetPosition().y - 130 });
+	m_coast.GetImage().setPosition({ 0, 400 });
+	m_water.GetImage().setPosition({ 0, 590 });
+	m_cat.SetPosition({ m_coast.GetSize().x - 230, m_coast.GetImage().getPosition().y - 130 });
 }
 
 void Game::Run()

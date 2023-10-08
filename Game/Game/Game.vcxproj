@@ -137,18 +137,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bait.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bait.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.png" />
+    <Image Include="bait.png" />
     <Image Include="cat.png" />
     <Image Include="coast.png" />
     <Image Include="rod.png" />

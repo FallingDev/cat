@@ -30,6 +30,9 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Bait.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -39,6 +42,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Bait.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,6 +62,9 @@
       <Filter>Исходные файлы\images</Filter>
     </Image>
     <Image Include="rod.png">
+      <Filter>Исходные файлы\images</Filter>
+    </Image>
+    <Image Include="bait.png">
       <Filter>Исходные файлы\images</Filter>
     </Image>
   </ItemGroup>
