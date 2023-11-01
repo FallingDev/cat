@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="Bait.h" />
     <ClInclude Include="Cat.h" />
+    <ClInclude Include="Common.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
   </ItemGroup>

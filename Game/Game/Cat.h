@@ -1,25 +1,27 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
-
 #include "Bait.h"
 #include "Entity.h"
 
-class Cat
+class Cat final : Entity
 {
 public:
-	Cat();
+	explicit Cat(Bait& bait);
 	void SetPosition(sf::Vector2f const position);
 	void Draw(sf::RenderWindow& window);
 	void Update(float const t);
 	void Cast();
+	void Throw();
 
 private:
-	const int ROTATION_SPEED = -300;
-	Entity m_cat = Entity("cat.png");
+	void UpdateLine();
+
+private:
 	Entity m_rod = Entity("rod.png");
 	sf::Vector2f m_position;
 	sf::Vector2f m_rodSize = {460, 30};
 	int m_rodRotationSpeed = 0;
-	Bait m_bait;
+	Bait& m_bait;
+	sf::Vertex m_line[2];
 };
 

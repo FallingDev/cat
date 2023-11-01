@@ -21,6 +21,11 @@ sf::Sprite& Entity::GetImage()
 	return m_image;
 }
 
+void Entity::SetOriginCenter()
+{
+	m_image.setOrigin(GetSize().x / 2, GetSize().y / 2);
+}
+
 void Entity::LoadImage(std::string const& filename, std::optional<sf::Vector2f> const size)
 {
 	if (!m_texture.loadFromFile(filename))

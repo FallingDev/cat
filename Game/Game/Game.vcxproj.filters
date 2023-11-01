@@ -16,6 +16,9 @@
     <Filter Include="Исходные файлы\images">
       <UniqueIdentifier>{8d940450-2e21-474c-addc-9c73a559fe3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Common">
+      <UniqueIdentifier>{44418123-138c-40db-84e8-19fa6c13b9fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="Bait.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Файлы заголовков\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

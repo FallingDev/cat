@@ -14,6 +14,7 @@ void Game::Init()
 	m_coast.GetImage().setPosition({ 0, 400 });
 	m_water.GetImage().setPosition({ 0, 590 });
 	m_cat.SetPosition({ m_coast.GetSize().x - 230, m_coast.GetImage().getPosition().y - 130 });
+	m_bait.SetOriginCenter();
 }
 
 void Game::Run()
@@ -23,6 +24,30 @@ void Game::Run()
 		PollEvents();
 		Update();
 		Draw();
+	}
+}
+
+void Game::OnKeyPressed(sf::Event const& event)
+{
+	if (event.key.code == sf::Keyboard::Escape)
+	{
+		m_window.close();
+	}
+}
+
+void Game::OnMousePressed()
+{
+	if (!m_bait.IsThrown())
+	{
+		m_cat.Cast();
+	}
+}
+
+void Game::OnMouseReleased()
+{
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_bait.IsThrown())
+	{
+		m_cat.Throw();
 	}
 }
 
@@ -37,13 +62,14 @@ void Game::PollEvents()
 			m_window.close();
 			break;
 		case sf::Event::KeyPressed:
-			if (event.key.code == sf::Keyboard::Escape)
-			{
-				m_window.close();
-			}
+			OnKeyPressed(event);
 			break;
 		case sf::Event::MouseButtonPressed:
-			m_cat.Cast();
+			OnMousePressed();
+			break;
+		case sf::Event::MouseButtonReleased:
+			OnMouseReleased();
+			break;
 		default: break;
 		}
 	}
@@ -53,6 +79,7 @@ void Game::Update()
 {
 	float const t = m_clock.restart().asSeconds();
 	m_cat.Update(t);
+	m_bait.Update(t);
 }
 
 void Game::Draw()

@@ -1,17 +1,17 @@
 #pragma once
 #include "Entity.h"
 
-class Bait
+class Bait final : public Entity
 {
 public:
-	Entity& Get();
+	explicit Bait();
 	void Throw(float const angle);
 	void Update(float const t);
+	bool IsThrown() const;
 
 private:
-	const float SPEED = 200;
-	Entity m_bait = Entity("bait.png");
 	float m_speedX = 0;
 	float m_speedY = 0;
+	bool m_isThrown = false;
 };
 

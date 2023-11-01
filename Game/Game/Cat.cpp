@@ -1,50 +1,83 @@
+#pragma once
 #include "Cat.h"
 #include "Entity.h"
+#include "Common.h"
 
-Cat::Cat()
+Cat::Cat(Bait& bait)
+	: Entity("cat.png")
+	, m_bait(bait)
 {
-	m_bait.Get().GetImage().setOrigin(-426, -7);
 }
 
 void Cat::SetPosition(sf::Vector2f const position)
 {
-	m_cat.GetImage().setPosition(position);
+	GetImage().setPosition(position);
 	m_rod.GetImage().setPosition(position + sf::Vector2f{ 95, 165 });
-	m_bait.Get().GetImage().setPosition(m_rod.GetImage().getPosition());
+	m_bait.GetImage().setPosition(m_rod.GetImage().getPosition() + m_rod.GetSize() + sf::Vector2f{ 0, m_bait.GetSize().y / 2 });
 }
 
 void Cat::Cast()
 {
+	if (m_bait.IsThrown())
+	{
+		return;
+	}
 	if (m_rodRotationSpeed == 0)
 	{
-		m_rodRotationSpeed = ROTATION_SPEED;
+		m_rodRotationSpeed = CASTING_SPEED;
 	}
+}
+
+void Cat::Throw()
+{
+	m_bait.Throw(m_rod.GetImage().getRotation() + 90);
+}
+
+void Cat::UpdateLine()
+{
+	auto const angle = m_rod.GetImage().getRotation();
+	auto const radians = ToRadians(angle);
+	auto const rotationVector = sf::Vector2f{ m_rod.GetSize().x * std::cos(radians), m_rod.GetSize().x * std::sin(radians) };
+	m_line[0] = sf::Vertex(m_rod.GetImage().getPosition() + rotationVector + sf::Vector2f{0, m_rod.GetSize().y});
+	m_line[1] = sf::Vertex(m_bait.GetImage().getPosition());
+	m_line[0].color = sf::Color(200, 200, 200);
+	m_line[1].color = sf::Color(200, 200, 200);
 }
 
 void Cat::Draw(sf::RenderWindow& window)
 {
-	m_cat.Draw(window);
+	UpdateLine();
+	Entity::Draw(window);
+	window.draw(m_line, 2, sf::Lines);
 	m_rod.Draw(window);
-	m_bait.Get().Draw(window);
+	m_bait.Draw(window);
 }
 
 void Cat::Update(float const t)
 {
-	if (m_rodRotationSpeed != 0)
+	if (m_rodRotationSpeed == 0)
 	{
-		m_rod.GetImage().rotate(static_cast<float>(m_rodRotationSpeed) * t);
-		m_bait.Get().GetImage().rotate(static_cast<float>(m_rodRotationSpeed) * t);
-		auto const angle = m_rod.GetImage().getRotation();
-		if (m_rodRotationSpeed < 0 && angle < 180)
-		{
-			m_rodRotationSpeed = -m_rodRotationSpeed;
-		}
-		if (m_rodRotationSpeed > 0 && angle < 90)
-		{
-			m_rodRotationSpeed = 0;
-			m_rod.GetImage().setRotation(0);
-			m_bait.Get().GetImage().setRotation(0);
-		}
+		return;
+	}
+
+	m_rod.GetImage().rotate(static_cast<float>(m_rodRotationSpeed) * t);
+	auto const angle = m_rod.GetImage().getRotation();
+	if (m_rodRotationSpeed < 0 && angle < 180)
+	{
+		m_rodRotationSpeed = -m_rodRotationSpeed;
+	}
+
+	if (m_rodRotationSpeed > 0 && angle < 90)
+	{
+		m_rodRotationSpeed = 0;
+		m_rod.GetImage().setRotation(0);
+	}
+
+	if (!m_bait.IsThrown())
+	{
+		auto const radians = ToRadians(angle);
+		auto const rotationVector = sf::Vector2f{ m_rod.GetSize().x * std::cos(radians), m_rod.GetSize().x * std::sin(radians) };
+		m_bait.GetImage().setPosition(m_rod.GetImage().getPosition() + rotationVector);
 	}
 }
 

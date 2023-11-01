@@ -11,6 +11,7 @@ public:
 	void Draw(sf::RenderWindow& window) const;
 	sf::Vector2f GetSize() const;
 	sf::Sprite& GetImage();
+	void SetOriginCenter();
 
 private:
 	void LoadImage
