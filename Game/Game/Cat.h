@@ -12,6 +12,7 @@ public:
 	void Update(float const t);
 	void Cast();
 	void Throw();
+	sf::Vector2f GetLineStart();
 
 private:
 	void UpdateLine();

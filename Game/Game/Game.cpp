@@ -2,7 +2,7 @@
 #include <SFML/Window/Event.hpp>
 
 Game::Game(sf::ContextSettings const& settings)
-	: m_window(sf::VideoMode(), "Pointer", sf::Style::Fullscreen, settings)
+	: m_window(sf::VideoMode(1800, 900), "Cat goes fishing", sf::Style::Default, settings)
 {
 	Init();
 }
@@ -77,6 +77,11 @@ void Game::PollEvents()
 
 void Game::Update()
 {
+	if (m_bait.GetImage().getPosition().y > m_water.GetImage().getPosition().y)
+	{
+		m_bait.Sink(m_cat.GetLineStart());
+	}
+
 	float const t = m_clock.restart().asSeconds();
 	m_cat.Update(t);
 	m_bait.Update(t);
