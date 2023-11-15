@@ -13,6 +13,7 @@ public:
 	void Cast();
 	void Throw();
 	sf::Vector2f GetLineStart();
+	void Reel();
 
 private:
 	void UpdateLine();

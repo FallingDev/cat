@@ -38,6 +38,10 @@ sf::Vector2f Cat::GetLineStart()
 	return sf::Vector2f(m_line[0].position.x, m_line[1].position.y);
 }
 
+void Cat::Reel()
+{
+}
+
 void Cat::UpdateLine()
 {
 	auto const angle = m_rod.GetImage().getRotation();
