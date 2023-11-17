@@ -22,15 +22,16 @@ void Bait::Update(float const t)
         return;
     }
 
-    if (m_isInWater && m_angle < M_PI / 2)
+    if (m_isInWater)
     {
         sf::Vector2f delta = GetImage().getPosition() - m_lineStart;
-        m_angle += t * SINK_SPEED / m_lineLen;
-
+        if (m_angle < M_PI / 2)
+        {
+            m_angle += t * SINK_SPEED / m_lineLen;
+        }
         GetImage().setPosition(m_lineStart + m_lineLen * sf::Vector2f{ std::cos(m_angle), std::sin(m_angle) });
     }
-
-    if (!m_isInWater)
+    else
     {
         GetImage().move(m_speedX * t, m_speedY * t);
         m_speedY += GRAVITY * t;
@@ -58,4 +59,18 @@ void Bait::Sink(sf::Vector2f const lineStart)
     sf::Vector2f delta = GetImage().getPosition() - m_lineStart;
     m_lineLen = std::hypot(delta.x, delta.y);
     m_angle = std::atan2(delta.y, delta.x);
+}
+
+void Bait::Reel(float const t)
+{
+    if (m_isInWater)
+    {
+        m_lineLen -= REEL_SPEED * t;
+
+        if (m_lineLen <= GetSize().y / 2)
+        {
+            m_isThrown = false;
+            m_isInWater = false;
+        }
+    }
 }

@@ -21,6 +21,7 @@ void Game::Run()
 {
 	while (m_window.isOpen())
 	{
+		m_t = m_clock.restart().asSeconds();
 		PollEvents();
 		Update();
 		Draw();
@@ -82,9 +83,13 @@ void Game::Update()
 		m_bait.Sink(m_cat.GetLineStart());
 	}
 
-	float const t = m_clock.restart().asSeconds();
-	m_cat.Update(t);
-	m_bait.Update(t);
+	m_cat.Update(m_t);
+	m_bait.Update(m_t);
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		m_bait.Reel(m_t);
+	}
 }
 
 void Game::Draw()

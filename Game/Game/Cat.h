@@ -13,7 +13,6 @@ public:
 	void Cast();
 	void Throw();
 	sf::Vector2f GetLineStart();
-	void Reel();
 
 private:
 	void UpdateLine();
@@ -25,5 +24,6 @@ private:
 	int m_rodRotationSpeed = 0;
 	Bait& m_bait;
 	sf::Vertex m_line[2];
+	bool m_cast = false;
 };
 

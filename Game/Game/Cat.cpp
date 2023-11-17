@@ -25,21 +25,22 @@ void Cat::Cast()
 	if (m_rodRotationSpeed == 0)
 	{
 		m_rodRotationSpeed = CASTING_SPEED;
+		m_cast = true;
 	}
 }
 
 void Cat::Throw()
 {
-	m_bait.Throw(m_rod.GetImage().getRotation() + 90);
+	if (m_cast && m_rodRotationSpeed > 0)
+	{
+		m_bait.Throw(m_rod.GetImage().getRotation() + 90);
+		m_cast = false;
+	}
 }
 
 sf::Vector2f Cat::GetLineStart()
 {
-	return sf::Vector2f(m_line[0].position.x, m_line[1].position.y);
-}
-
-void Cat::Reel()
-{
+	return sf::Vector2f(m_line[0].position.x, m_line[0].position.y);
 }
 
 void Cat::UpdateLine()
@@ -80,13 +81,14 @@ void Cat::Update(float const t)
 	{
 		m_rodRotationSpeed = 0;
 		m_rod.GetImage().setRotation(0);
+		m_cast = false;
 	}
 
 	if (!m_bait.IsThrown())
 	{
 		auto const radians = ToRadians(angle);
 		auto const rotationVector = sf::Vector2f{ m_rod.GetSize().x * std::cos(radians), m_rod.GetSize().x * std::sin(radians) };
-		m_bait.GetImage().setPosition(m_rod.GetImage().getPosition() + rotationVector);
+		m_bait.GetImage().setPosition(m_rod.GetImage().getPosition() + sf::Vector2f{ 0, m_rod.GetSize().y } + rotationVector);
 	}
 }
 

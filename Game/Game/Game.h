@@ -28,4 +28,5 @@ private:
 	Entity m_water = Entity("water.png");
 	Bait m_bait;
 	Cat m_cat = Cat(m_bait);
+	float m_t = 0;
 };
