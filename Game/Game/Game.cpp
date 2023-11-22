@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <SFML/Window/Event.hpp>
+#include "Common.h"
 
 Game::Game(sf::ContextSettings const& settings)
 	: m_window(sf::VideoMode(1800, 900), "Cat goes fishing", sf::Style::Default, settings)
@@ -15,6 +16,16 @@ void Game::Init()
 	m_water.GetImage().setPosition({ 0, 590 });
 	m_cat.SetPosition({ m_coast.GetSize().x - 230, m_coast.GetImage().getPosition().y - 130 });
 	m_bait.SetOriginCenter();
+	InitFishes();
+}
+
+void Game::InitFishes()
+{
+	sf::FloatRect standardArea(m_coast.GetImage().getPosition().x + m_coast.GetSize().x, m_water.GetImage().getPosition().y, 400, 200);
+	for (int i = 0; i < FISHES.CUDDLEFISH; ++i)
+	{
+		m_fishes.push_back(std::make_shared<Fish>("cuddlefish.png", standardArea));
+	}
 }
 
 void Game::Run()
@@ -90,6 +101,11 @@ void Game::Update()
 	{
 		m_bait.Reel(m_t);
 	}
+
+	/*for (auto& fish : m_fishes)
+	{
+		fish.Update(m_t);
+	}*/
 }
 
 void Game::Draw()
@@ -99,6 +115,11 @@ void Game::Draw()
 	m_water.Draw(m_window);
 	m_coast.Draw(m_window);
 	m_cat.Draw(m_window);
+	for (auto& fish : m_fishes)
+	{
+		fish->Draw(m_window);
+	}
+
 	m_window.display();
 }
 

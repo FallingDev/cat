@@ -19,6 +19,9 @@
     <Filter Include="Файлы заголовков\Common">
       <UniqueIdentifier>{44418123-138c-40db-84e8-19fa6c13b9fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\images\fishes">
+      <UniqueIdentifier>{a6bf5952-c8c9-4427-af23-cf1b2b79a772}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -34,6 +37,12 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Bait.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="SwimmingStrategy.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -52,6 +61,12 @@
     </ClInclude>
     <ClInclude Include="Common.h">
       <Filter>Файлы заголовков\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="SwimmingStrategy.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +87,9 @@
     </Image>
     <Image Include="bait.png">
       <Filter>Исходные файлы\images</Filter>
+    </Image>
+    <Image Include="cuddlefish.png">
+      <Filter>Исходные файлы\images\fishes</Filter>
     </Image>
   </ItemGroup>
 </Project>

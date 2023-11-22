@@ -3,6 +3,9 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Cat.h"
 #include "Entity.h"
+#include "Fish.h"
+#include "SwimmingStrategy.h"
+#include <memory>
 
 class Game
 {
@@ -12,6 +15,7 @@ public:
 
 private:
 	void Init();
+	void InitFishes();
 	void PollEvents();
 	void Update();
 	void Draw();
@@ -29,4 +33,5 @@ private:
 	Bait m_bait;
 	Cat m_cat = Cat(m_bait);
 	float m_t = 0;
+	std::vector<std::shared_ptr<Fish>> m_fishes;
 };
