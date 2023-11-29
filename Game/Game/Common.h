@@ -14,6 +14,7 @@ constexpr int BAIT_FLIGHT_SPEED = 1200;
 constexpr int AIR_RESIST = 400;
 constexpr int SINK_SPEED = 100;
 constexpr int REEL_SPEED = 200;
+constexpr int BAIT_ATTRACTION = 50;
 
 inline float ToRadians(double const degrees)
 {

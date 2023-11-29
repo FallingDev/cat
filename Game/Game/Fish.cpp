@@ -1,20 +1,16 @@
 #include "Fish.h"
+#include "Common.h"
 
 Fish::Fish(std::string&& filename, SwimmingStrategy swimmingStrategy)
 	: Entity(std::move(filename))
 	, m_swimmingStrategy(swimmingStrategy)
 	
 {
-	m_swimmingStrategy.Start(*this, 10);
+	SetOriginCenter();
+	m_swimmingStrategy.Start(*this, 100, 5);
 }
 
-void Fish::Update(float const t)
+void Fish::Update(float const t, Bait& bait)
 {
-	m_swimmingStrategy.Swim(*this, t);
-}
-
-void Fish::SetArea(sf::FloatRect area)
-{
-	m_swimmingStrategy.SetArea(std::move(area));
-	m_swimmingStrategy.Start(*this, 10);
+	m_swimmingStrategy.Swim(*this, t, bait);
 }

@@ -102,10 +102,10 @@ void Game::Update()
 		m_bait.Reel(m_t);
 	}
 
-	/*for (auto& fish : m_fishes)
+	for (auto& fish : m_fishes)
 	{
-		fish.Update(m_t);
-	}*/
+		fish->Update(m_t, m_bait);
+	}
 }
 
 void Game::Draw()
