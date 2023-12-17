@@ -152,6 +152,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="IFish.h" />
     <ClInclude Include="SwimmingStrategy.h" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,29 @@
     <Image Include="cuddlefish.png" />
     <Image Include="rod.png" />
     <Image Include="water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\Kanit-Black.ttf" />
+    <Font Include="fonts\Kanit-BlackItalic.ttf" />
+    <Font Include="fonts\Kanit-Bold.ttf" />
+    <Font Include="fonts\Kanit-BoldItalic.ttf" />
+    <Font Include="fonts\Kanit-ExtraBold.ttf" />
+    <Font Include="fonts\Kanit-ExtraBoldItalic.ttf" />
+    <Font Include="fonts\Kanit-ExtraLight.ttf" />
+    <Font Include="fonts\Kanit-ExtraLightItalic.ttf" />
+    <Font Include="fonts\Kanit-Italic.ttf" />
+    <Font Include="fonts\Kanit-Light.ttf" />
+    <Font Include="fonts\Kanit-LightItalic.ttf" />
+    <Font Include="fonts\Kanit-Medium.ttf" />
+    <Font Include="fonts\Kanit-MediumItalic.ttf" />
+    <Font Include="fonts\Kanit-Regular.ttf" />
+    <Font Include="fonts\Kanit-SemiBold.ttf" />
+    <Font Include="fonts\Kanit-SemiBoldItalic.ttf" />
+    <Font Include="fonts\Kanit-Thin.ttf" />
+    <Font Include="fonts\Kanit-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="fonts\OFL.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

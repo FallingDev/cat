@@ -8,7 +8,10 @@ Entity::Entity(std::string const& filename, std::optional<sf::Vector2f> const si
 
 void Entity::Draw(sf::RenderWindow& window) const
 {
-	window.draw(m_image);
+	if (!m_hidden)
+	{
+		window.draw(m_image);
+	}
 }
 
 sf::Vector2f Entity::GetSize() const
@@ -24,6 +27,21 @@ sf::Sprite& Entity::GetImage()
 void Entity::SetOriginCenter()
 {
 	m_image.setOrigin(GetSize().x / 2, GetSize().y / 2);
+}
+
+void Entity::Hide()
+{
+	m_hidden = true;
+}
+
+void Entity::Show()
+{
+	m_hidden = false;
+}
+
+bool Entity::IsHidden()
+{
+	return m_hidden;
 }
 
 void Entity::LoadImage(std::string const& filename, std::optional<sf::Vector2f> const size)

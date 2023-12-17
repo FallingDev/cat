@@ -22,6 +22,9 @@
     <Filter Include="Исходные файлы\images\fishes">
       <UniqueIdentifier>{a6bf5952-c8c9-4427-af23-cf1b2b79a772}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\fonts">
+      <UniqueIdentifier>{0ac35fe1-040b-411e-92b3-ce4f36c5908b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -68,6 +71,9 @@
     <ClInclude Include="SwimmingStrategy.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="IFish.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.png">
@@ -91,5 +97,66 @@
     <Image Include="cuddlefish.png">
       <Filter>Исходные файлы\images\fishes</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\Kanit-Black.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-BlackItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-Bold.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-BoldItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-ExtraBold.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-ExtraBoldItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-ExtraLight.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-ExtraLightItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-Italic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-Light.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-LightItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-Medium.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-MediumItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-Regular.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-SemiBold.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-SemiBoldItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-Thin.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+    <Font Include="fonts\Kanit-ThinItalic.ttf">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="fonts\OFL.txt">
+      <Filter>Исходные файлы\fonts</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -61,7 +61,7 @@ void Bait::Sink(sf::Vector2f const lineStart)
     m_angle = std::atan2(delta.y, delta.x);
 }
 
-void Bait::Reel(float const t)
+void Bait::Reel(float const t, int& budget)
 {
     if (m_isInWater)
     {
@@ -71,6 +71,28 @@ void Bait::Reel(float const t)
         {
             m_isThrown = false;
             m_isInWater = false;
+            Rebait();
+            if (m_caughtFish != nullptr)
+            {
+                budget += m_caughtFish->Sell();
+                m_caughtFish = nullptr;
+            }
         }
     }
+}
+
+void Bait::Eat(IFish* fish)
+{
+    Hide();
+    m_caughtFish = fish;
+}
+
+void Bait::Rebait()
+{
+    Show();
+}
+
+bool Bait::IsInWater()
+{
+    return m_isInWater;
 }

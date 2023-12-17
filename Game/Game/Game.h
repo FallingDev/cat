@@ -1,11 +1,18 @@
 #pragma once
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/View.hpp>
 #include "Cat.h"
 #include "Entity.h"
 #include "Fish.h"
 #include "SwimmingStrategy.h"
 #include <memory>
+
+int constexpr WIDTH = 1800;
+int constexpr HEIGHT = 900;
+int constexpr RIGHT_LIMIT = 200;
+int constexpr BOTTOM_LIMIT = 300;
+int constexpr TOP_LIMIT = 300;
 
 class Game
 {
@@ -22,6 +29,8 @@ private:
 	void OnKeyPressed(sf::Event const& event);
 	void OnMousePressed();
 	void OnMouseReleased();
+	void DrawBudget();
+	void UpdateView();
 
 private:
 	sf::Clock m_clock;
@@ -34,4 +43,6 @@ private:
 	Cat m_cat = Cat(m_bait);
 	float m_t = 0;
 	std::vector<std::shared_ptr<Fish>> m_fishes;
+	int m_budget = 500;
+	sf::View m_view;
 };

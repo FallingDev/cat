@@ -12,6 +12,9 @@ public:
 	sf::Vector2f GetSize() const;
 	sf::Sprite& GetImage();
 	void SetOriginCenter();
+	void Hide();
+	void Show();
+	bool IsHidden();
 
 private:
 	void LoadImage
@@ -23,4 +26,5 @@ private:
 private:
 	sf::Sprite m_image;
 	sf::Texture m_texture;
+	bool m_hidden = false;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "IFish.h"
 
 class Bait final : public Entity
 {
@@ -9,7 +10,10 @@ public:
 	void Update(float const t);
 	bool IsThrown() const;
 	void Sink(sf::Vector2f const lineStart);
-	void Reel(float const t);
+	void Reel(float const t, int& budget);
+	void Eat(IFish* fish);
+	void Rebait();
+	bool IsInWater();
 
 private:
 	float m_speedX = 0;
@@ -19,5 +23,6 @@ private:
 	float m_lineLen = 0;
 	sf::Vector2f m_lineStart;
 	float m_angle = 0;
+	IFish* m_caughtFish = nullptr;
 };
 
