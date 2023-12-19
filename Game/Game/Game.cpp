@@ -4,7 +4,7 @@
 #include "Common.h"
 
 Game::Game(sf::ContextSettings const& settings)
-	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Default, settings)
+	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Fullscreen, settings)
 {
 	Init();
 }
@@ -24,7 +24,7 @@ void Game::Init()
 
 void Game::InitFishes()
 {
-	sf::FloatRect standardArea(m_coast.GetImage().getPosition().x + m_coast.GetSize().x, m_water.GetImage().getPosition().y, CUDDLEFISH_AREA.x, CUDDLEFISH_AREA.y);
+	sf::FloatRect standardArea(m_water.GetImage().getPosition() + sf::Vector2f{ m_coast.GetSize().x, 0}, CUDDLEFISH_AREA);
 	for (int i = 0; i < FISHES.CUDDLEFISH; ++i)
 	{
 		m_fishes.push_back(std::make_shared<Fish>("cuddlefish.png", standardArea));

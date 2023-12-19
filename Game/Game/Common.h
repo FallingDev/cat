@@ -4,17 +4,17 @@
 
 struct FISHES_NUMBERS
 {
-	int CUDDLEFISH = 20;
+	int CUDDLEFISH = 50;
 };
 
 const FISHES_NUMBERS FISHES;
 
 constexpr int GRAVITY = 800;
-constexpr int CASTING_SPEED = -200;
-constexpr int BAIT_FLIGHT_SPEED = 1500;
+constexpr int CASTING_SPEED = -250;
+constexpr int BAIT_FLIGHT_SPEED = 1800;
 constexpr int AIR_RESIST = 300;
 constexpr int SINK_SPEED = 200;
-constexpr int REEL_SPEED = 300;
+constexpr int REEL_SPEED = 250;
 constexpr int BAIT_ATTRACTION = 50;
 const sf::Vector2f CUDDLEFISH_AREA = { 3000, 3000 };
 
