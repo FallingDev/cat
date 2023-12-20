@@ -4,7 +4,7 @@
 #include "Common.h"
 
 Game::Game(sf::ContextSettings const& settings)
-	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Fullscreen, settings)
+	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Default, settings)
 {
 	Init();
 }
@@ -151,25 +151,25 @@ void Game::UpdateView()
 	float rightBound = viewCenter.x - m_size.x / 2 + m_size.x - RIGHT_LIMIT;
 	if (baitPos.x > rightBound)
 	{
-		delta = { baitPos.x - rightBound, 0 };
+		delta += { baitPos.x - rightBound, 0 };
 	}
 
 	float leftBound = viewCenter.x;
 	if (m_bait.IsInWater() && baitPos.x < leftBound)
 	{
-		delta = { baitPos.x - leftBound, 0 };
+		delta += { baitPos.x - leftBound, 0 };
 	}
 
 	float bottomBound = viewCenter.y - m_size.y / 2 + m_size.y - BOTTOM_LIMIT;
 	if (baitPos.y > bottomBound)
 	{
-		delta = { 0, baitPos.y - bottomBound };
+		delta += { 0, baitPos.y - bottomBound };
 	}
 
 	float topBound = viewCenter.y - m_size.y / 2 + TOP_LIMIT;
 	if (m_bait.IsInWater() && baitPos.y < topBound)
 	{
-		delta = { 0, baitPos.y - topBound };
+		delta += { 0, baitPos.y - topBound };
 	}
 
 	m_background.GetImage().move(delta);
