@@ -25,5 +25,6 @@ private:
 	Bait& m_bait;
 	sf::Vertex m_line[2];
 	bool m_cast = false;
+	bool m_fishSelling = false;
 };
 

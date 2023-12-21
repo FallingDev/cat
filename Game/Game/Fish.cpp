@@ -12,16 +12,28 @@ Fish::Fish(std::string&& filename, SwimmingStrategy swimmingStrategy)
 
 void Fish::Update(float const t, Bait& bait)
 {
-	HuntBait(t, bait);
-	if (!m_caught)
+	if (m_caught)
 	{
-		m_swimmingStrategy.Swim(*this, t, bait);
+		if (!m_sold)
+		{
+			GetImage().setPosition(bait.GetImage().getPosition());
+		}
+		else if (GetImage().getPosition().x > m_soldX)
+		{
+			GetImage().move(-100 * t, 0);
+		}
+		return;
 	}
+
+	HuntBait(t, bait);
+	m_swimmingStrategy.Swim(*this, t, bait);
 }
 
 int Fish::Sell()
 {
-	Hide();
+	GetImage().setPosition(GetImage().getPosition().x, COAST_Y + GetRandomInt(40, 90));
+	m_sold = true;
+	m_soldX = GetRandomInt(50, 250);
 	return m_price;
 }
 
@@ -38,9 +50,6 @@ void Fish::HuntBait(float const t, Bait& bait)
 
 	GetImage().setRotation(angleToBait);
 	GetImage().setPosition(bait.GetImage().getPosition());
-	if (!m_caught)
-	{
-		m_caught = true;
-		bait.Eat(this);
-	}
+	m_caught = true;
+	bait.Eat(this);
 }

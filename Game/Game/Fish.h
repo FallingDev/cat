@@ -18,5 +18,7 @@ private:
 	SwimmingStrategy m_swimmingStrategy;
 	bool m_caught = false;
 	int m_price = 50;
+	int m_soldX = 0;
+	bool m_sold = false;
 };
 

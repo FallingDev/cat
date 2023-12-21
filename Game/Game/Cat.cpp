@@ -31,10 +31,17 @@ void Cat::Cast()
 
 void Cat::Throw()
 {
-	if (m_cast && m_rodRotationSpeed > 0)
+	if (m_cast && !m_fishSelling)
 	{
-		m_bait.Throw(m_rod.GetImage().getRotation() + 90);
-		m_cast = false;
+		if (m_rodRotationSpeed > 0)
+		{
+			m_bait.Throw(m_rod.GetImage().getRotation() + 90);
+			m_cast = false;
+		}
+		else if (m_bait.GetFish() != nullptr)
+		{
+			m_fishSelling = true;
+		}
 	}
 }
 
@@ -75,6 +82,10 @@ void Cat::Update(float const t)
 	if (m_rodRotationSpeed < 0 && angle < 180)
 	{
 		m_rodRotationSpeed = -m_rodRotationSpeed;
+		if (m_fishSelling)
+		{
+			m_bait.GetFish()->Sell();
+		}
 	}
 
 	if (m_rodRotationSpeed > 0 && angle < 90)
@@ -82,6 +93,8 @@ void Cat::Update(float const t)
 		m_rodRotationSpeed = 0;
 		m_rod.GetImage().setRotation(0);
 		m_cast = false;
+		m_fishSelling = false;
+		m_bait.Rebait();
 	}
 
 	if (!m_bait.IsThrown())

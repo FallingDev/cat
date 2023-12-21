@@ -4,7 +4,7 @@
 #include "Common.h"
 
 Game::Game(sf::ContextSettings const& settings)
-	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Default, settings)
+	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Fullscreen, settings)
 {
 	Init();
 }
@@ -15,8 +15,8 @@ void Game::Init()
 	m_size = m_window.getSize();
 	m_view.setSize(m_size.x, m_size.y);
 	m_view.setCenter(m_size.x / 2, m_size.y / 2);
-	m_coast.GetImage().setPosition({ 0, 400 });
-	m_water.GetImage().setPosition({ 0, 590 });
+	m_coast.GetImage().setPosition({ 0, COAST_Y });
+	m_water.GetImage().setPosition({ 0, WATER_Y });
 	m_cat.SetPosition({ m_coast.GetSize().x - 230, m_coast.GetImage().getPosition().y - 130 });
 	m_bait.SetOriginCenter();
 	InitFishes();
@@ -102,7 +102,7 @@ void Game::Update()
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		m_bait.Reel(m_t, m_budget);
+		m_bait.Reel(m_t);
 	}
 
 	for (auto& fish : m_fishes)

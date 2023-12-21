@@ -10,10 +10,11 @@ public:
 	void Update(float const t);
 	bool IsThrown() const;
 	void Sink(sf::Vector2f const lineStart);
-	void Reel(float const t, int& budget);
+	void Reel(float const t);
 	void Eat(IFish* fish);
 	void Rebait();
 	bool IsInWater();
+	IFish* GetFish();
 
 private:
 	float m_speedX = 0;
