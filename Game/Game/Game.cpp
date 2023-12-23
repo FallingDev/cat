@@ -1,10 +1,9 @@
 #include "Game.h"
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Text.hpp>
-#include "Common.h"
 
 Game::Game(sf::ContextSettings const& settings)
-	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Fullscreen, settings)
+	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Default, settings)
 {
 	Init();
 }
@@ -19,6 +18,7 @@ void Game::Init()
 	m_water.GetImage().setPosition({ 0, WATER_Y });
 	m_cat.SetPosition({ m_coast.GetSize().x - 230, m_coast.GetImage().getPosition().y - 130 });
 	m_bait.SetOriginCenter();
+	m_money.GetImage().setPosition(m_size.x - 300, 30);
 	InitFishes();
 }
 
@@ -113,18 +113,18 @@ void Game::Update()
 	UpdateView();
 }
 
-void Game::DrawBudget()
-{
-	sf::Text text;
-	text.setString("$" + std::to_string(m_budget));
-	sf::Font font;
-	font.loadFromFile("fonts/Kanit-bold.ttf");
-	text.setFont(font);
-	text.setCharacterSize(50);
-	text.setPosition(m_size.x - 300, 30);
-	text.setFillColor(sf::Color(64, 72, 86));
-	m_window.draw(text);
-}
+//void Game::DrawBudget()
+//{
+//	sf::Text text;
+//	text.setString("$" + std::to_string(m_budget));
+//	sf::Font font;
+//	font.loadFromFile("fonts/Kanit-bold.ttf");
+//	text.setFont(font);
+//	text.setCharacterSize(50);
+//	text.setPosition(m_size.x - 300, 30);
+//	text.setFillColor(sf::Color(64, 72, 86));
+//	m_window.draw(text);
+//}
 
 void Game::UpdateView()
 {
@@ -184,7 +184,7 @@ void Game::Draw()
 	m_water.Draw(m_window);
 	m_coast.Draw(m_window);
 	m_cat.Draw(m_window);
-	DrawBudget();
+	m_money.Draw(m_window);
 	for (auto& fish : m_fishes)
 	{
 		fish->Draw(m_window);

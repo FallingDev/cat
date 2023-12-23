@@ -9,6 +9,8 @@ struct FISHES_NUMBERS
 
 const FISHES_NUMBERS FISHES;
 
+constexpr int START_MONEY_AMOUNT = 500;
+
 constexpr int COAST_Y = 400;
 constexpr int WATER_Y = 590;
 

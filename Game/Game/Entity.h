@@ -8,7 +8,7 @@ class Entity
 {
 public:
 	explicit Entity(std::string const& filename, std::optional<sf::Vector2f> const size = std::nullopt);
-	void Draw(sf::RenderWindow& window) const;
+	virtual void Draw(sf::RenderWindow& window);
 	sf::Vector2f GetSize() const;
 	sf::Sprite& GetImage();
 	void SetOriginCenter();

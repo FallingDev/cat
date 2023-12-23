@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -143,6 +143,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Money.cpp" />
     <ClCompile Include="SwimmingStrategy.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IFish.h" />
+    <ClInclude Include="Money.h" />
     <ClInclude Include="SwimmingStrategy.h" />
   </ItemGroup>
   <ItemGroup>

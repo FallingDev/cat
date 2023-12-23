@@ -7,6 +7,8 @@
 #include "Fish.h"
 #include "SwimmingStrategy.h"
 #include <memory>
+#include "Money.h"
+#include "Common.h"
 
 int constexpr WIDTH = 1800;
 int constexpr HEIGHT = 900;
@@ -29,7 +31,6 @@ private:
 	void OnKeyPressed(sf::Event const& event);
 	void OnMousePressed();
 	void OnMouseReleased();
-	void DrawBudget();
 	void UpdateView();
 
 private:
@@ -43,6 +44,6 @@ private:
 	Cat m_cat = Cat(m_bait);
 	float m_t = 0;
 	std::vector<std::shared_ptr<Fish>> m_fishes;
-	int m_budget = 500;
+	Money m_money = Money(START_MONEY_AMOUNT);
 	sf::View m_view;
 };

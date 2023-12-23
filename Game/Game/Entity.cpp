@@ -6,7 +6,7 @@ Entity::Entity(std::string const& filename, std::optional<sf::Vector2f> const si
 	LoadImage(filename, size);
 }
 
-void Entity::Draw(sf::RenderWindow& window) const
+void Entity::Draw(sf::RenderWindow& window)
 {
 	if (!m_hidden)
 	{
