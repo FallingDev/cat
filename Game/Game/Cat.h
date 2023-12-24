@@ -2,11 +2,12 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Bait.h"
 #include "Entity.h"
+#include "Money.h"
 
 class Cat final : Entity
 {
 public:
-	explicit Cat(Bait& bait);
+	explicit Cat(Bait& bait, Money& money);
 	void SetPosition(sf::Vector2f const position);
 	void Draw(sf::RenderWindow& window);
 	void Update(float const t);
@@ -26,5 +27,7 @@ private:
 	sf::Vertex m_line[2];
 	bool m_cast = false;
 	bool m_fishSelling = false;
+	Money& m_money;
+	float m_lineTension = 0;
 };
 

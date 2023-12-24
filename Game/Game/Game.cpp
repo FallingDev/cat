@@ -113,19 +113,6 @@ void Game::Update()
 	UpdateView();
 }
 
-//void Game::DrawBudget()
-//{
-//	sf::Text text;
-//	text.setString("$" + std::to_string(m_budget));
-//	sf::Font font;
-//	font.loadFromFile("fonts/Kanit-bold.ttf");
-//	text.setFont(font);
-//	text.setCharacterSize(50);
-//	text.setPosition(m_size.x - 300, 30);
-//	text.setFillColor(sf::Color(64, 72, 86));
-//	m_window.draw(text);
-//}
-
 void Game::UpdateView()
 {
 	sf::Vector2f viewCenter = m_view.getCenter();

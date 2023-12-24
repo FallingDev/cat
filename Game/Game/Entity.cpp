@@ -44,6 +44,17 @@ bool Entity::IsHidden()
 	return m_hidden;
 }
 
+void Entity::Flip()
+{
+	m_image.scale(1, -1);
+	m_flipped = !m_flipped;
+}
+
+bool Entity::IsFlipped() const
+{
+	return m_flipped;
+}
+
 void Entity::LoadImage(std::string const& filename, std::optional<sf::Vector2f> const size)
 {
 	if (!m_texture.loadFromFile(filename))

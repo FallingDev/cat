@@ -10,6 +10,9 @@ struct FISHES_NUMBERS
 const FISHES_NUMBERS FISHES;
 
 constexpr int START_MONEY_AMOUNT = 500;
+constexpr int ROD_STRENGTH = 500;
+constexpr int ROD_POWER = 50;
+constexpr int MAX_LINE_TENSION = 20;
 
 constexpr int COAST_Y = 400;
 constexpr int WATER_Y = 590;
@@ -18,7 +21,7 @@ constexpr int GRAVITY = 800;
 constexpr int CASTING_SPEED = -250;
 constexpr int BAIT_FLIGHT_SPEED = 1800;
 constexpr int AIR_RESIST = 300;
-constexpr int SINK_SPEED = 250;
+constexpr int SINK_SPEED = 200;
 constexpr int REEL_SPEED = 250;
 constexpr int BAIT_ATTRACTION = 50;
 const sf::Vector2f CUDDLEFISH_AREA = { 3000, 3000 };

@@ -41,9 +41,9 @@ private:
 	Entity m_coast = Entity("coast.png");
 	Entity m_water = Entity("water.png");
 	Bait m_bait;
-	Cat m_cat = Cat(m_bait);
 	float m_t = 0;
 	std::vector<std::shared_ptr<Fish>> m_fishes;
 	Money m_money = Money(START_MONEY_AMOUNT);
+	Cat m_cat = Cat(m_bait, m_money);
 	sf::View m_view;
 };

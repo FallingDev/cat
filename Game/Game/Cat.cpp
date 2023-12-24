@@ -3,8 +3,9 @@
 #include "Entity.h"
 #include "Common.h"
 
-Cat::Cat(Bait& bait)
+Cat::Cat(Bait& bait, Money& money)
 	: Entity("cat.png")
+	, m_money(money)
 	, m_bait(bait)
 {
 }
@@ -57,8 +58,24 @@ void Cat::UpdateLine()
 	auto const rotationVector = sf::Vector2f{ m_rod.GetSize().x * std::cos(radians), m_rod.GetSize().x * std::sin(radians) };
 	m_line[0] = sf::Vertex(m_rod.GetImage().getPosition() + rotationVector + sf::Vector2f{0, m_rod.GetSize().y});
 	m_line[1] = sf::Vertex(m_bait.GetImage().getPosition());
-	m_line[0].color = sf::Color(200, 200, 200);
-	m_line[1].color = sf::Color(200, 200, 200);
+	float tensionCoef = m_lineTension / MAX_LINE_TENSION;
+	float r = 200 + 55 * tensionCoef;
+	float g = 200 * (1 - tensionCoef);
+	float b = 200 * (1 - tensionCoef);
+	if (r > 255)
+	{
+		r = 255;
+	}
+	if (g < 0)
+	{
+		g = 0;
+	}
+	if (b < 0)
+	{
+		b = 0;
+	}
+	m_line[0].color = sf::Color(r, g, b);
+	m_line[1].color = sf::Color(r, g, b);
 }
 
 void Cat::Draw(sf::RenderWindow& window)
@@ -74,6 +91,12 @@ void Cat::Update(float const t)
 {
 	if (m_rodRotationSpeed == 0)
 	{
+		float tensionDelta = m_bait.GetResist() - m_lineTension;
+		m_lineTension += tensionDelta * t;
+		if (m_lineTension > MAX_LINE_TENSION)
+		{
+			m_bait.BreakLine();
+		}
 		return;
 	}
 
@@ -84,7 +107,7 @@ void Cat::Update(float const t)
 		m_rodRotationSpeed = -m_rodRotationSpeed;
 		if (m_fishSelling)
 		{
-			m_bait.GetFish()->Sell();
+			m_money.Add(m_bait.GetFish()->Sell());
 		}
 	}
 

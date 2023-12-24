@@ -1,6 +1,7 @@
 #include "Bait.h"
 #include <corecrt_math_defines.h>
 #include "Common.h"
+#include <algorithm>
 
 Bait::Bait()
     : Entity("bait.png")
@@ -25,10 +26,24 @@ void Bait::Update(float const t)
     if (m_isInWater)
     {
         sf::Vector2f delta = GetImage().getPosition() - m_lineStart;
-        if (m_angle < M_PI / 2)
+        if (m_caughtFish == nullptr || m_caughtFish->IsTired())
         {
-            m_angle += t * SINK_SPEED / m_lineLen;
+            if (m_angle < M_PI / 2)
+            {
+                m_angle += t * SINK_SPEED / m_lineLen;
+            }
         }
+        
+        if (m_caughtFish != nullptr)
+        {
+            m_lineLen += REEL_SPEED * m_resist / ROD_POWER * t;
+        }
+
+        if (GetImage().getPosition().y < WATER_Y && ToDegrees(m_angle) < 65)
+        {
+            m_angle = std::asin((WATER_Y - m_lineStart.y) / m_lineLen);
+        }
+        
         GetImage().setPosition(m_lineStart + m_lineLen * sf::Vector2f{ std::cos(m_angle), std::sin(m_angle) });
     }
     else
@@ -66,11 +81,18 @@ void Bait::Reel(float const t)
     if (m_isInWater)
     {
         m_lineLen -= REEL_SPEED * t;
+        m_totalResist = std::min(m_resist, static_cast<float>(ROD_POWER));
 
         if (m_lineLen <= GetSize().y / 2)
         {
             m_isThrown = false;
             m_isInWater = false;
+            m_angle = M_PI / 2;
+            if (m_caughtFish == nullptr)
+            {
+                Rebait();
+            }
+            GetImage().setPosition(m_lineStart + m_lineLen * sf::Vector2f{ std::cos(m_angle), std::sin(m_angle) });
         }
     }
 }
@@ -84,6 +106,7 @@ void Bait::Eat(IFish* fish)
 void Bait::Rebait()
 {
     Show();
+    m_resist = 0;
 }
 
 bool Bait::IsInWater()
@@ -94,4 +117,36 @@ bool Bait::IsInWater()
 IFish* Bait::GetFish()
 {
     return m_caughtFish;
+}
+
+float Bait::GetAngle() const
+{
+    return m_angle;
+}
+
+void Bait::AddAngle(float const angle)
+{
+    m_angle += angle;
+}
+
+void Bait::SetFishResist(float const resist)
+{
+    m_resist = resist;
+}
+
+float Bait::GetResist()
+{
+    auto resist = m_totalResist;
+    m_totalResist = 0;
+    return resist;
+}
+
+void Bait::BreakLine()
+{
+    if (m_caughtFish != nullptr)
+    {
+        m_caughtFish->Uncaught();
+        m_caughtFish = nullptr;
+        m_resist = 0;
+    }
 }

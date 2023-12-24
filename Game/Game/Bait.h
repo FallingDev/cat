@@ -15,6 +15,11 @@ public:
 	void Rebait();
 	bool IsInWater();
 	IFish* GetFish();
+	float GetAngle() const;
+	void AddAngle(float const angle);
+	void SetFishResist(float const resist);
+	float GetResist();
+	void BreakLine();
 
 private:
 	float m_speedX = 0;
@@ -25,5 +30,7 @@ private:
 	sf::Vector2f m_lineStart;
 	float m_angle = 0;
 	IFish* m_caughtFish = nullptr;
+	float m_resist = 0;
+	float m_totalResist = 0;
 };
 

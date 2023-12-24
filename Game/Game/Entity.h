@@ -15,6 +15,8 @@ public:
 	void Hide();
 	void Show();
 	bool IsHidden();
+	void Flip();
+	bool IsFlipped() const;
 
 private:
 	void LoadImage
@@ -27,4 +29,5 @@ private:
 	sf::Sprite m_image;
 	sf::Texture m_texture;
 	bool m_hidden = false;
+	bool m_flipped;
 };
