@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="Bait.cpp" />
     <ClCompile Include="Cat.cpp" />
+    <ClCompile Include="CuddleFish.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Bait.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="CuddleFish.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Game.h" />

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include "CuddleFish.h"
 
 Game::Game(sf::ContextSettings const& settings)
 	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Default, settings)
@@ -27,7 +28,7 @@ void Game::InitFishes()
 	sf::FloatRect standardArea(m_water.GetImage().getPosition() + sf::Vector2f{ m_coast.GetSize().x, 0}, CUDDLEFISH_AREA);
 	for (int i = 0; i < FISHES.CUDDLEFISH; ++i)
 	{
-		m_fishes.push_back(std::make_shared<Fish>("cuddlefish.png", standardArea));
+		m_fishes.push_back(std::make_shared<CuddleFish>(standardArea));
 	}
 }
 

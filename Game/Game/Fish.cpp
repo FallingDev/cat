@@ -1,13 +1,31 @@
 #include "Fish.h"
 #include "Common.h"
 
-Fish::Fish(std::string&& filename, SwimmingStrategy swimmingStrategy)
+Fish::Fish
+(
+	std::string&& filename,
+	SwimmingStrategy swimmingStrategy,
+	int price,
+	int power,
+	float rotationSpeed,
+	int maxStamina,
+	int weight,
+	int recoverySpeed,
+	int maxSpeed,
+	int boost
+)
 	: Entity(std::move(filename))
 	, m_swimmingStrategy(swimmingStrategy)
-	
+	, m_price(price)
+	, m_power(power)
+	, m_rotationSpeed(rotationSpeed)
+	, m_maxStamina(maxStamina)
+	, m_weight(weight)
+	, m_recoverySpeed(recoverySpeed)
 {
 	SetOriginCenter();
-	m_swimmingStrategy.Start(*this, 100, 70);
+	m_swimmingStrategy.Start(*this, maxSpeed, boost);
+	m_stamina = m_maxStamina;
 }
 
 void Fish::Update(float const t, Bait& bait)
