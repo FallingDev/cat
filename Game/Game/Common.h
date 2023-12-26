@@ -25,12 +25,12 @@ constexpr int MAX_LINE_TENSION = 100;
 constexpr int COAST_Y = 400;
 constexpr int WATER_Y = 590;
 
-constexpr int GRAVITY = 800;
+constexpr int GRAVITY = 650;
 constexpr int CASTING_SPEED = -250;
-constexpr int BAIT_FLIGHT_SPEED = 1800;
-constexpr int AIR_RESIST = 300;
-constexpr int SINK_SPEED = 200;
-constexpr int REEL_SPEED = 250;
+constexpr int BAIT_FLIGHT_SPEED = 2000;
+constexpr int AIR_RESIST = 200;
+constexpr int SINK_SPEED = 250;
+constexpr int REEL_SPEED = 350;
 constexpr int BAIT_ATTRACTION = 40;
 const sf::Vector2f CUDDLEFISH_AREA = { 2000, 1000 };
 const sf::Vector2f MUSTARDFISH_AREA = { 3000, 1000 };

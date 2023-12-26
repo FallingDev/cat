@@ -18,6 +18,7 @@ void Game::Init()
 	m_view.setCenter(m_size.x / 2, m_size.y / 2);
 	m_coast.GetImage().setPosition({ 0, COAST_Y });
 	m_water.GetImage().setPosition({ 0, WATER_Y });
+	m_blackout.GetImage().setPosition({ 0, WATER_Y + 100 });
 	m_cat.SetPosition({ m_coast.GetSize().x - 230, m_coast.GetImage().getPosition().y - 130 });
 	m_bait.SetOriginCenter();
 	m_money.GetImage().setPosition(m_size.x - 300, 30);
@@ -200,6 +201,7 @@ void Game::Draw()
 	{
 		m_card->Draw(m_window);
 	}
+	m_blackout.Draw(m_window);
 
 	m_window.display();
 }

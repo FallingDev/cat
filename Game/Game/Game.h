@@ -47,4 +47,5 @@ private:
 	Cat m_cat = Cat(m_bait, m_money);
 	sf::View m_view;
 	std::shared_ptr<Entity> m_card = nullptr;
+	Entity m_blackout = Entity("blackout.png");
 };
