@@ -4,7 +4,7 @@
 #include <algorithm>
 
 Bait::Bait()
-    : Entity("bait.png")
+    : Entity("small_bait.png")
 {
 }
 
@@ -74,6 +74,7 @@ void Bait::Sink(sf::Vector2f const lineStart)
     sf::Vector2f delta = GetImage().getPosition() - m_lineStart;
     m_lineLen = std::hypot(delta.x, delta.y);
     m_angle = std::atan2(delta.y, delta.x);
+    Rebait();
 }
 
 void Bait::Reel(float const t)
@@ -105,8 +106,40 @@ void Bait::Eat(IFish* fish)
 
 void Bait::Rebait()
 {
+    if (!IsHidden())
+    {
+        return;
+    }
+
+    if (m_caughtFish != nullptr)
+    {
+        switch (m_caughtFish->GetSize())
+        {
+        case Size::Small:
+            LoadImage("medium_bait.png");
+            m_size = Size::Medium;
+            break;
+        case Size::Medium:
+        case Size::Large:
+            LoadImage("large_bait.png");
+            m_size = Size::Large;
+            break;
+        default:
+            break;
+        }
+
+        SetOriginCenter();
+        m_caughtFish->HideFish();
+    }
+    else
+    {
+        LoadImage("small_bait.png");
+        m_size = Size::Small;
+    }
+
     Show();
     m_resist = 0;
+    m_caughtFish = nullptr;
 }
 
 bool Bait::IsInWater()
@@ -149,4 +182,21 @@ void Bait::BreakLine()
         m_caughtFish = nullptr;
         m_resist = 0;
     }
+}
+
+int Bait::SellFish()
+{
+    if (m_caughtFish == nullptr)
+    {
+        return 0;
+    }
+
+    int money = m_caughtFish->Sell();
+    m_caughtFish = nullptr;
+    return money;
+}
+
+Size Bait::GetBaitSize() const
+{
+    return m_size;
 }

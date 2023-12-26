@@ -17,8 +17,6 @@ public:
 	bool IsHidden();
 	void Flip();
 	bool IsFlipped() const;
-
-private:
 	void LoadImage
 	(
 		std::string const& filename,

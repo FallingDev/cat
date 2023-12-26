@@ -9,18 +9,19 @@ public:
 	virtual void Swim(Entity& fish, float const t, Bait& bait);
 	void Start(Entity& fish, float maxSpeed, float boost);
 	void ClampInArea(Entity& fish);
+	void SetMaxSpeed();
 
 private:
-	void TurnAround();
+	void TurnAround(Entity& fish);
 
 private:
 	sf::FloatRect m_area;
 	float m_maxSpeed = 0;
 	float m_boost = 0;
 	float m_speed = 0;
-	float m_angle = 0;
 	bool m_isInArea = true;
 	bool m_isSlowDown = false;
 	bool m_caught = false;
+	int m_angle = 0;
 };
 

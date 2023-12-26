@@ -10,6 +10,7 @@ public:
 	Fish
 	(
 		std::string&& filename,
+		std::string&& filenameEaten,
 		SwimmingStrategy swimmingStrategy,
 		int price,
 		int power,
@@ -18,12 +19,19 @@ public:
 		int weight,
 		int recoverySpeed,
 		int maxSpeed,
-		int boost
+		int boost,
+		Size size,
+		sf::Vector2f origin,
+		int sence
 	);
 	void Update(float const t, Bait& bait);
 	int Sell() override;
 	void Uncaught() override;
 	bool IsTired() const override;
+	Size GetSize() const override;
+	void HideFish() override;
+	void Eat() override;
+	bool IsEaten() const override;
 
 private:
 	void HuntBait(float const t, Bait& bait);
@@ -44,5 +52,9 @@ private:
 	float m_stamina = m_maxStamina;
 	int m_weight;
 	int m_recoverySpeed;
+	Size m_size;
+	float m_sence;
+	std::string m_filenameEaten;
+	bool m_eaten = false;
 };
 

@@ -2,6 +2,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include "CuddleFish.h"
+#include "MustardFish.h"
 
 Game::Game(sf::ContextSettings const& settings)
 	: m_window(sf::VideoMode(WIDTH, HEIGHT), "Cat goes fishing", sf::Style::Default, settings)
@@ -25,10 +26,16 @@ void Game::Init()
 
 void Game::InitFishes()
 {
-	sf::FloatRect standardArea(m_water.GetImage().getPosition() + sf::Vector2f{ m_coast.GetSize().x, 0}, CUDDLEFISH_AREA);
+	sf::Vector2f startPosition = sf::Vector2f{ m_coast.GetSize().x, WATER_Y };
+	sf::FloatRect cuddlefishArea(startPosition + sf::Vector2f{0, 20}, CUDDLEFISH_AREA);
+	sf::FloatRect mustardfiishArea(startPosition + sf::Vector2f{0, 1000}, MUSTARDFISH_AREA);
 	for (int i = 0; i < FISHES.CUDDLEFISH; ++i)
 	{
-		m_fishes.push_back(std::make_shared<CuddleFish>(standardArea));
+		m_fishes.push_back(std::make_shared<CuddleFish>(cuddlefishArea));
+	}
+	for (int i = 0; i < FISHES.MUSTARDFISH; ++i)
+	{
+		m_fishes.push_back(std::make_shared<MustardFish>(mustardfiishArea));
 	}
 }
 
@@ -37,9 +44,12 @@ void Game::Run()
 	while (m_window.isOpen())
 	{
 		m_t = m_clock.restart().asSeconds();
-		PollEvents();
-		Update();
-		Draw();
+		if (m_t < 1)
+		{
+			PollEvents();
+			Update();
+			Draw();
+		}
 	}
 }
 

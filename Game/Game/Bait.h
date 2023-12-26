@@ -20,8 +20,11 @@ public:
 	void SetFishResist(float const resist);
 	float GetResist();
 	void BreakLine();
+	int SellFish();
+	Size GetBaitSize() const;
 
 private:
+	Size m_size = Size::Small;
 	float m_speedX = 0;
 	float m_speedY = 0;
 	bool m_isThrown = false;

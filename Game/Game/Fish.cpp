@@ -4,6 +4,7 @@
 Fish::Fish
 (
 	std::string&& filename,
+	std::string&& filenameEaten,
 	SwimmingStrategy swimmingStrategy,
 	int price,
 	int power,
@@ -12,9 +13,13 @@ Fish::Fish
 	int weight,
 	int recoverySpeed,
 	int maxSpeed,
-	int boost
+	int boost,
+	Size size,
+	sf::Vector2f origin,
+	int sence
 )
 	: Entity(std::move(filename))
+	, m_filenameEaten(std::move(filenameEaten))
 	, m_swimmingStrategy(swimmingStrategy)
 	, m_price(price)
 	, m_power(power)
@@ -22,14 +27,21 @@ Fish::Fish
 	, m_maxStamina(maxStamina)
 	, m_weight(weight)
 	, m_recoverySpeed(recoverySpeed)
+	, m_size(size)
+	, m_sence(sence)
 {
-	SetOriginCenter();
+	GetImage().setOrigin(origin);
 	m_swimmingStrategy.Start(*this, maxSpeed, boost);
 	m_stamina = m_maxStamina;
 }
 
 void Fish::Update(float const t, Bait& bait)
 {
+	if (IsHidden())
+	{
+		return;
+	}
+
 	FlipFish();
 
 	if (m_caught)
@@ -45,8 +57,8 @@ void Fish::Update(float const t, Bait& bait)
 		return;
 	}
 
-	HuntBait(t, bait);
 	m_swimmingStrategy.Swim(*this, t, bait);
+	HuntBait(t, bait);
 }
 
 int Fish::Sell()
@@ -54,7 +66,7 @@ int Fish::Sell()
 	GetImage().setPosition(GetImage().getPosition().x, COAST_Y + GetRandomInt(40, 90));
 	m_sold = true;
 	m_soldX = GetRandomInt(50, 250);
-	return m_price;
+	return m_price - (m_eaten ? m_price / 2 : 0);
 }
 
 void Fish::Uncaught()
@@ -67,33 +79,91 @@ bool Fish::IsTired() const
 	return m_tired;
 }
 
+Size Fish::GetSize() const
+{
+	return m_size;
+}
+
+void Fish::HideFish()
+{
+	Hide();
+}
+
+void Fish::Eat()
+{
+	m_eaten = true;
+	LoadImage(m_filenameEaten);
+}
+
+bool Fish::IsEaten() const
+{
+	return m_eaten;
+}
+
 void Fish::HuntBait(float const t, Bait& bait)
 {
 	sf::Vector2f delta = GetImage().getPosition() - bait.GetImage().getPosition();
 	const float distanceToBait = std::hypot(delta.x, delta.y);
-	const float angleToBait = ToRadians(std::atan2(delta.y, delta.x));
 
-	if (distanceToBait > BAIT_ATTRACTION || (!m_caught && bait.IsHidden()))
+	auto fish = bait.GetFish();
+	bool canEatFish = fish != nullptr && !fish->IsEaten() && fish->GetSize() < GetSize();
+	if (distanceToBait < m_sence && (!bait.IsHidden() || canEatFish) && bait.GetImage().getPosition().y > WATER_Y)
+	{
+		float angleToBait;
+		if (delta.y > 0)
+		{
+			angleToBait = ToDegrees(std::atan2(delta.y, delta.x));
+		}
+		else
+		{
+			angleToBait = ToDegrees(std::atan2(delta.y, delta.x));
+		}
+
+		m_swimmingStrategy.SetMaxSpeed();
+		GetImage().setRotation(angleToBait);
+	}
+
+	if (distanceToBait > BAIT_ATTRACTION || (bait.IsHidden() && !canEatFish))
 	{
 		return;
 	}
 
-	GetImage().setRotation(angleToBait);
-	GetImage().setPosition(bait.GetImage().getPosition());
-	m_caught = true;
-	bait.Eat(this);
+	if (canEatFish)
+	{
+		fish->Eat();
+	}
+	else
+	{
+		GetImage().setPosition(bait.GetImage().getPosition());
+		m_caught = true;
+		bait.Eat(this);
+
+		if (bait.GetBaitSize() < GetSize())
+		{
+			bait.BreakLine();
+		}
+	}
 }
 
 void Fish::Fight(float const t, Bait& bait)
 {
 	GetImage().setPosition(bait.GetImage().getPosition());
+
 	float baitAngle = ToDegrees(bait.GetAngle());
 	float fishRotation = GetImage().getRotation();
 	float delta = fishRotation - baitAngle;
 
-	if (m_tired)
+	if (GetImage().getPosition().y < WATER_Y)
 	{
-		GetImage().rotate(delta > 5 ? -m_rotationSpeed * t : m_rotationSpeed * t);
+		m_stamina = 0;
+	}
+
+	if (m_tired || m_eaten)
+	{
+		if (std::abs(delta) > 2)
+		{
+			GetImage().rotate((delta) > 0 ? -m_rotationSpeed * t : m_rotationSpeed * t);
+		}
 		m_stamina += m_recoverySpeed * t;
 		if (m_stamina > m_maxStamina)
 		{

@@ -6,6 +6,7 @@ public:
 	CuddleFish(sf::FloatRect area)
 		: Fish(
 			"cuddlefish.png",
+			"cuddlefish_eaten.png",
 			SwimmingStrategy(area),
 			50,
 			30,
@@ -14,7 +15,10 @@ public:
 			5,
 			5,
 			100,
-			70
+			70,
+			Size::Small,
+			{10, 47},
+			200
 		)
 	{}
 };

@@ -19,24 +19,29 @@ void SwimmingStrategy::Swim(Entity& fish, float const t, Bait& bait)
 	if (m_speed < 0)
 	{
 		m_isSlowDown = false;
-		m_angle += GetRandomInt(-45, 45);
+		m_angle = GetRandomInt(-45, 45);
 	}
 
-	float radians = ToRadians(m_angle);
-	fish.GetImage().setRotation(m_angle);
+	if (m_angle > 0)
+	{
+		float degrees = 150 * t;
+		fish.GetImage().rotate(degrees);
+		m_angle -= degrees;
+	}
+
+	float radians = ToRadians(fish.GetImage().getRotation());
 	fish.GetImage().move(-t * m_speed * std::cos(radians), -t * m_speed * std::sin(radians));
 }
 
 void SwimmingStrategy::Start(Entity& fish, float maxSpeed, float boost)
 {
-	m_angle = GetRandomInt(0, 360);
+	fish.GetImage().setRotation(GetRandomInt(0, 360));
 	m_maxSpeed = maxSpeed;
 	m_boost = boost;
 	m_speed = GetRandomInt(0, m_maxSpeed);
 	const int x = GetRandomInt(m_area.left, m_area.left + m_area.width);
 	const int y = GetRandomInt(m_area.top, m_area.top + m_area.height);
 	fish.GetImage().setPosition(x, y);
-	fish.GetImage().setRotation(m_angle);
 }
 
 void SwimmingStrategy::ClampInArea(Entity& fish)
@@ -45,7 +50,7 @@ void SwimmingStrategy::ClampInArea(Entity& fish)
 	if (!isInArea && m_isInArea)
 	{
 		m_isInArea = false;
-		TurnAround();
+		TurnAround(fish);
 	}
 	if (isInArea && !m_isInArea)
 	{
@@ -53,7 +58,12 @@ void SwimmingStrategy::ClampInArea(Entity& fish)
 	}
 }
 
-void SwimmingStrategy::TurnAround()
+void SwimmingStrategy::SetMaxSpeed()
 {
-	m_angle += 180;
+	m_speed = m_maxSpeed;
+}
+
+void SwimmingStrategy::TurnAround(Entity& fish)
+{
+	fish.GetImage().rotate(180);
 }

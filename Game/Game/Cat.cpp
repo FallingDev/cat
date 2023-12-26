@@ -107,7 +107,7 @@ void Cat::Update(float const t)
 		m_rodRotationSpeed = -m_rodRotationSpeed;
 		if (m_fishSelling)
 		{
-			m_money.Add(m_bait.GetFish()->Sell());
+			m_money.Add(m_bait.SellFish());
 		}
 	}
 
@@ -117,7 +117,10 @@ void Cat::Update(float const t)
 		m_rod.GetImage().setRotation(0);
 		m_cast = false;
 		m_fishSelling = false;
-		m_bait.Rebait();
+		if (m_bait.GetFish() == nullptr)
+		{
+			m_bait.Rebait();
+		}
 	}
 
 	if (!m_bait.IsThrown())
