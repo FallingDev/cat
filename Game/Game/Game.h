@@ -12,8 +12,8 @@
 
 int constexpr WIDTH = 1800;
 int constexpr HEIGHT = 900;
-int constexpr RIGHT_LIMIT = 200;
-int constexpr BOTTOM_LIMIT = 300;
+int constexpr RIGHT_LIMIT = 400;
+int constexpr BOTTOM_LIMIT = 400;
 int constexpr TOP_LIMIT = 300;
 
 class Game

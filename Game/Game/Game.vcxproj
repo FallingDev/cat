@@ -148,16 +148,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bait.h" />
+    <ClInclude Include="Brimble.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="CowFish.h" />
     <ClInclude Include="CuddleFish.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Grumper.h" />
     <ClInclude Include="IFish.h" />
     <ClInclude Include="Money.h" />
     <ClInclude Include="MustardFish.h" />
+    <ClInclude Include="PinkKisser.h" />
+    <ClInclude Include="Shark.h" />
+    <ClInclude Include="SnobFish.h" />
     <ClInclude Include="SwimmingStrategy.h" />
+    <ClInclude Include="Trumble.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.png" />

@@ -110,11 +110,16 @@ std::shared_ptr<Entity> Fish::GetCard()
 
 void Fish::HuntBait(float const t, Bait& bait)
 {
+	if (bait.GetBaitSize() == Size::Large && GetSize() == Size::Small)
+	{
+		return;
+	}
+
 	sf::Vector2f delta = GetImage().getPosition() - bait.GetImage().getPosition();
 	const float distanceToBait = std::hypot(delta.x, delta.y);
 
 	auto fish = bait.GetFish();
-	bool canEatFish = fish != nullptr && !fish->IsEaten() && fish->GetSize() < GetSize();
+	bool canEatFish = fish != nullptr && !fish->IsEaten() && fish->GetSize() < GetSize() && fish->GetSize() == Size::Small;
 	if (distanceToBait < m_sence && (!bait.IsHidden() || canEatFish) && bait.GetImage().getPosition().y > WATER_Y)
 	{
 		float angleToBait = ToDegrees(std::atan2(delta.y, delta.x));

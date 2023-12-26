@@ -89,6 +89,27 @@
     <ClInclude Include="MustardFish.h">
       <Filter>Файлы заголовков\fishes</Filter>
     </ClInclude>
+    <ClInclude Include="CowFish.h">
+      <Filter>Файлы заголовков\fishes</Filter>
+    </ClInclude>
+    <ClInclude Include="Brimble.h">
+      <Filter>Файлы заголовков\fishes</Filter>
+    </ClInclude>
+    <ClInclude Include="Shark.h">
+      <Filter>Файлы заголовков\fishes</Filter>
+    </ClInclude>
+    <ClInclude Include="SnobFish.h">
+      <Filter>Файлы заголовков\fishes</Filter>
+    </ClInclude>
+    <ClInclude Include="Grumper.h">
+      <Filter>Файлы заголовков\fishes</Filter>
+    </ClInclude>
+    <ClInclude Include="Trumble.h">
+      <Filter>Файлы заголовков\fishes</Filter>
+    </ClInclude>
+    <ClInclude Include="PinkKisser.h">
+      <Filter>Файлы заголовков\fishes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.png">

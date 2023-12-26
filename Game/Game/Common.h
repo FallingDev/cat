@@ -11,16 +11,24 @@ enum class Size
 
 struct FISHES_NUMBERS
 {
-	int CUDDLEFISH = 15;
-	int MUSTARDFISH = 5;
+	int CUDDLEFISH = 10;
+	int CUDDLEFISH_FULL = 20;
+	int MUSTARDFISH = 8;
+	int COWFISH = 3;
+	int BRIMBLE = 3;
+	int SHARK = 3;
+	int SNOBFISH = 20;
+	int GRUMPER = 5;
+	int TRUMBLE = 3;
+	int PINK_KISSER = 15;
 };
 
 const FISHES_NUMBERS FISHES;
 
-constexpr int START_MONEY_AMOUNT = 500;
+constexpr int START_MONEY_AMOUNT = 0;
 constexpr int ROD_STRENGTH = 500;
 constexpr int ROD_POWER = 500;
-constexpr int MAX_LINE_TENSION = 100;
+constexpr int MAX_LINE_TENSION = 300;
 
 constexpr int COAST_Y = 400;
 constexpr int WATER_Y = 590;
@@ -32,8 +40,17 @@ constexpr int AIR_RESIST = 200;
 constexpr int SINK_SPEED = 250;
 constexpr int REEL_SPEED = 350;
 constexpr int BAIT_ATTRACTION = 40;
-const sf::Vector2f CUDDLEFISH_AREA = { 2000, 1000 };
-const sf::Vector2f MUSTARDFISH_AREA = { 3000, 1000 };
+
+const sf::Vector2f FULL_AREA = { 5000, 5000 };
+const sf::Vector2f CUDDLEFISH_AREA = { 1000, 1000 };
+const sf::Vector2f MUSTARDFISH_AREA = { 5000, 2000 };
+const sf::Vector2f COWFISH_AREA = { 3000, 2000 };
+const sf::Vector2f BRIMBLE_AREA = { 500, 2000 };
+const sf::Vector2f SHARK_AREA = { 5000, 1500 };
+const sf::Vector2f SNOBFISH_AREA = { 5000, 1500 };
+const sf::Vector2f GRUMPER_AREA = { 5000, 2000 };
+const sf::Vector2f TRUMBLE_AREA = { 4000, 2000 };
+const sf::Vector2f PINK_KISSER_AREA = { 3000, 3000 };
 
 inline float ToRadians(double const degrees)
 {
