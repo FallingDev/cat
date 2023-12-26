@@ -11,4 +11,5 @@ public:
 	virtual void HideFish() = 0;
 	virtual bool IsEaten() const = 0;
 	virtual void Eat() = 0;
+	virtual std::shared_ptr<Entity> GetCard() = 0;
 };

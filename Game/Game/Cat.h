@@ -14,6 +14,7 @@ public:
 	void Cast();
 	void Throw();
 	sf::Vector2f GetLineStart();
+	bool IsCasting() const;
 
 private:
 	void UpdateLine();

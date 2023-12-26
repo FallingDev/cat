@@ -5,6 +5,7 @@ Fish::Fish
 (
 	std::string&& filename,
 	std::string&& filenameEaten,
+	std::string&& filenameCard,
 	SwimmingStrategy swimmingStrategy,
 	int price,
 	int power,
@@ -33,6 +34,8 @@ Fish::Fish
 	GetImage().setOrigin(origin);
 	m_swimmingStrategy.Start(*this, maxSpeed, boost);
 	m_stamina = m_maxStamina;
+	m_card = std::make_shared<Entity>(std::move(filenameCard));
+	m_card->GetImage().setPosition(460, 100);
 }
 
 void Fish::Update(float const t, Bait& bait)
@@ -100,6 +103,11 @@ bool Fish::IsEaten() const
 	return m_eaten;
 }
 
+std::shared_ptr<Entity> Fish::GetCard()
+{
+	return m_card;
+}
+
 void Fish::HuntBait(float const t, Bait& bait)
 {
 	sf::Vector2f delta = GetImage().getPosition() - bait.GetImage().getPosition();
@@ -109,16 +117,7 @@ void Fish::HuntBait(float const t, Bait& bait)
 	bool canEatFish = fish != nullptr && !fish->IsEaten() && fish->GetSize() < GetSize();
 	if (distanceToBait < m_sence && (!bait.IsHidden() || canEatFish) && bait.GetImage().getPosition().y > WATER_Y)
 	{
-		float angleToBait;
-		if (delta.y > 0)
-		{
-			angleToBait = ToDegrees(std::atan2(delta.y, delta.x));
-		}
-		else
-		{
-			angleToBait = ToDegrees(std::atan2(delta.y, delta.x));
-		}
-
+		float angleToBait = ToDegrees(std::atan2(delta.y, delta.x));
 		m_swimmingStrategy.SetMaxSpeed();
 		GetImage().setRotation(angleToBait);
 	}

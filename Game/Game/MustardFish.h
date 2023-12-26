@@ -8,6 +8,7 @@ public:
 		: Fish(
 			"mustardfish.png",
 			"mustardfish.png",
+			"mustardfish.png",
 			SwimmingStrategy(area),
 			450,
 			100,

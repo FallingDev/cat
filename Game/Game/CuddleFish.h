@@ -7,6 +7,7 @@ public:
 		: Fish(
 			"cuddlefish.png",
 			"cuddlefish_eaten.png",
+			"cuddlefish_card.png",
 			SwimmingStrategy(area),
 			50,
 			30,

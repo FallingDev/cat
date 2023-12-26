@@ -8,8 +8,6 @@ SwimmingStrategy::SwimmingStrategy(sf::FloatRect area)
 
 void SwimmingStrategy::Swim(Entity& fish, float const t, Bait& bait)
 {
-	ClampInArea(fish);
-
 	m_speed += m_boost * t * (m_isSlowDown ? -1 : 1);
 	if (m_speed > m_maxSpeed)
 	{
@@ -29,6 +27,7 @@ void SwimmingStrategy::Swim(Entity& fish, float const t, Bait& bait)
 		m_angle -= degrees;
 	}
 
+	ClampInArea(fish);
 	float radians = ToRadians(fish.GetImage().getRotation());
 	fish.GetImage().move(-t * m_speed * std::cos(radians), -t * m_speed * std::sin(radians));
 }
@@ -47,14 +46,14 @@ void SwimmingStrategy::Start(Entity& fish, float maxSpeed, float boost)
 void SwimmingStrategy::ClampInArea(Entity& fish)
 {
 	const bool isInArea = m_area.contains(fish.GetImage().getPosition());
-	if (!isInArea && m_isInArea)
+
+	if (!isInArea)
 	{
-		m_isInArea = false;
-		TurnAround(fish);
-	}
-	if (isInArea && !m_isInArea)
-	{
-		m_isInArea = true;
+		sf::Vector2f areaCenter = { m_area.left + m_area.width / 2, m_area.top + m_area.height / 2 };
+		sf::Vector2f delta = fish.GetImage().getPosition() - areaCenter;
+		float angleToBait = ToDegrees(std::atan2(delta.y, delta.x));
+		fish.GetImage().setRotation(angleToBait);
+		SetMaxSpeed();
 	}
 }
 

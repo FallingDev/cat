@@ -46,4 +46,5 @@ private:
 	Money m_money = Money(START_MONEY_AMOUNT);
 	Cat m_cat = Cat(m_bait, m_money);
 	sf::View m_view;
+	std::shared_ptr<Entity> m_card = nullptr;
 };

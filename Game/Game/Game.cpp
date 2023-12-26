@@ -65,8 +65,9 @@ void Game::OnMousePressed()
 {
 	if (!m_bait.IsThrown())
 	{
-		m_cat.Cast();
+		m_cat.Cast(); 
 	}
+	m_card = nullptr;
 }
 
 void Game::OnMouseReleased()
@@ -131,6 +132,12 @@ void Game::UpdateView()
 
 	if (!m_bait.IsThrown())
 	{
+		auto fish = m_bait.GetFish();
+		if (m_card == nullptr && fish != nullptr && !fish->IsEaten() && !m_cat.IsCasting())
+		{
+			m_card = fish->GetCard();
+		}
+
 		int speed = -200;
 		if (viewCenter.x - m_size.x / 2 > 3)
 		{
@@ -142,6 +149,7 @@ void Game::UpdateView()
 		}
 		m_background.GetImage().move(delta);
 		m_view.move(delta);
+		m_money.GetImage().move(delta);
 		return;
 	}
 	
@@ -172,6 +180,7 @@ void Game::UpdateView()
 
 	m_background.GetImage().move(delta);
 	m_view.move(delta);
+	m_money.GetImage().move(delta);
 }
 
 void Game::Draw()
@@ -186,6 +195,10 @@ void Game::Draw()
 	for (auto& fish : m_fishes)
 	{
 		fish->Draw(m_window);
+	}
+	if (m_card != nullptr)
+	{
+		m_card->Draw(m_window);
 	}
 
 	m_window.display();

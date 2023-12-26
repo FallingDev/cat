@@ -35,5 +35,6 @@ private:
 	IFish* m_caughtFish = nullptr;
 	float m_resist = 0;
 	float m_totalResist = 0;
+	Entity* m_card = nullptr;
 };
 

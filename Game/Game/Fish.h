@@ -11,6 +11,7 @@ public:
 	(
 		std::string&& filename,
 		std::string&& filenameEaten,
+		std::string&& filenameCard,
 		SwimmingStrategy swimmingStrategy,
 		int price,
 		int power,
@@ -32,6 +33,7 @@ public:
 	void HideFish() override;
 	void Eat() override;
 	bool IsEaten() const override;
+	std::shared_ptr<Entity> GetCard() override;
 
 private:
 	void HuntBait(float const t, Bait& bait);
@@ -56,5 +58,6 @@ private:
 	float m_sence;
 	std::string m_filenameEaten;
 	bool m_eaten = false;
+	std::shared_ptr<Entity> m_card = nullptr;
 };
 
