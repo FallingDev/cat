@@ -4,7 +4,7 @@
 #include <algorithm>
 
 Bait::Bait()
-    : Entity("large_bait.png")
+    : Entity("small_bait.png")
 {
 }
 

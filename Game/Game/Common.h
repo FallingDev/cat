@@ -16,7 +16,7 @@ struct FISHES_NUMBERS
 	int MUSTARDFISH = 8;
 	int COWFISH = 3;
 	int BRIMBLE = 3;
-	int SHARK = 3;
+	int SHARK = 1;
 	int SNOBFISH = 20;
 	int GRUMPER = 5;
 	int TRUMBLE = 3;

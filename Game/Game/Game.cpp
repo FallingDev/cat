@@ -210,7 +210,7 @@ void Game::UpdateView()
 	}
 
 	float leftBound = viewCenter.x;
-	if (m_bait.IsInWater() && baitPos.x < leftBound)
+	if (m_bait.IsInWater() && baitPos.x < leftBound && viewCenter.x + m_size.x / 2 < m_water.GetSize().x)
 	{
 		delta += { baitPos.x - leftBound, 0 };
 	}
